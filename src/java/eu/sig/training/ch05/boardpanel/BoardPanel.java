@@ -1,6 +1,6 @@
 package eu.sig.training.ch05.boardpanel;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.List;
 
 public class BoardPanel {
@@ -23,19 +23,26 @@ public class BoardPanel {
      * @param h
      *            The height of this square (in pixels).
      */
-    private void render(Square square, Graphics g, int x, int y, int w, int h) {
-        square.getSprite().draw(g, x, y, w, h);
-        for (Unit unit : square.getOccupants()) {
-            unit.getSprite().draw(g, x, y, w, h);
-        }
+    private void render(Square square, Graphics g) {
+        square.draw(g);
     }
     // end::render[]
 
     private class Sprite {
         @SuppressWarnings("unused")
-        public void draw(Graphics g, int x, int y, int w, int h) {
+        public void draw(Graphics g, Span span) {
 
         }
+    }
+
+    private class Point {
+        public int getX() { return 0; }
+        public int getY() { return 0; }
+    }
+
+    private class Span {
+        public Point getTopLeftPosition() { return null; }
+        public Point getBottomRightPosition() { return null; }
     }
 
     private class Unit {
@@ -48,6 +55,14 @@ public class BoardPanel {
 
         public List<Unit> getOccupants() {
             return null;
+        }
+        public Span getSpan() { return null; }
+
+        public void draw(Graphics g) {
+            getSprite().draw(g, getSpan());
+            for (Unit unit : getOccupants()) {
+                unit.getSprite().draw(g, getSpan());
+            }
         }
 
     }

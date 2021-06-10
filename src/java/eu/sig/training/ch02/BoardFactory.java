@@ -4,11 +4,35 @@ public class BoardFactory {
     // tag::createBoard[]
     public Board createBoard(Square[][] grid) {
         assert grid != null;
-
         Board board = new Board(grid);
+        return board;
+    }
+    // end::createBoard[]
 
-        int width = board.getWidth();
-        int height = board.getHeight();
+    private void linkBoards(Square[][] grid, int x, int y) {
+
+    }
+}
+
+class Board {
+
+    private  Square[][] grid;
+    @SuppressWarnings("unused")
+    public Board(Square[][] grid) {
+        calculateGrid();
+    }
+
+    public int getWidth() {
+        return 0;
+    }
+
+    public int getHeight() {
+        return 0;
+    }
+
+    private void calculateGrid() {
+        int width = getWidth();
+        int height = getHeight();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 Square square = grid[x][y];
@@ -20,28 +44,16 @@ public class BoardFactory {
                 }
             }
         }
-
-        return board;
-    }
-    // end::createBoard[]
-}
-
-class Board {
-    @SuppressWarnings("unused")
-    public Board(Square[][] grid) {}
-
-    public int getWidth() {
-        return 0;
-    }
-
-    public int getHeight() {
-        return 0;
     }
 }
 
 class Square {
     @SuppressWarnings("unused")
     public void link(Square neighbour, Direction dir) {}
+
+    public void linkToGrid(Square[][] grid) {
+
+    }
 }
 
 class Direction {

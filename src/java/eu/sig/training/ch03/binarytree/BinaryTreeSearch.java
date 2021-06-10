@@ -9,22 +9,20 @@ public class BinaryTreeSearch {
             return depth;
         } else {
             if (nodeValue < node.getValue()) {
-                BinaryTreeNode<Integer> left = node.getLeft();
-                if (left == null) {
-                    throw new TreeException("Value not found in tree!");
-                } else {
-                    return 1 + calculateDepth(left, nodeValue);
-                }
+                return nextDepth(node.getLeft(), nodeValue);
             } else {
-                BinaryTreeNode<Integer> right = node.getRight();
-                if (right == null) {
-                    throw new TreeException("Value not found in tree!");
-                } else {
-                    return 1 + calculateDepth(right, nodeValue);
-                }
+                return nextDepth(node.getRight(), nodeValue);
             }
         }
     }
     // end::calculateDepth[]
+
+    public static int nextDepth(BinaryTreeNode<Integer> node, int currentNodeValue) {
+        if (node == null) {
+            throw new TreeException("Value not found in tree!");
+        } else {
+            return 1 + calculateDepth(node, currentNodeValue);
+        }
+    }
 
 }
